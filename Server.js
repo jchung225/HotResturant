@@ -16,35 +16,35 @@ var data = {
 
 var visitorCount=0;
 
-app.get("/", function(req, res){
+app.get("", function(req, res){
     res.sendfile(path.join(__dirname, "home.html"));
     visitorCount++;
 });
 
-app.get("/reserve", function(req, res){
+app.get("reserve", function(req, res){
     res.sendfile(path.join(__dirname, "reserve.html"));
 });
 
-app.get("/tables", function(req, res){
+app.get("tables", function(req, res){
     res.sendfile(path.join(__dirname,"tables.html"));
 });
 
-app.get("/api/", function(req, res){
+app.get("api", function(req, res){
     res.json(data);
 });
 
-app.get("/api/clear", function(req, res){
+app.get("api/clear", function(req, res){
     data.reservations.length = 0;
     data.waitlist.length = 0;
     res.json(data);
 });
 
-app.get("/api/visitors", function(req,res){
+app.get("api/visitors", function(req,res){
     res.json(visitorCount);
 });
     
 
-app.post("/api/new", function(req, res){
+app.post("api/new", function(req, res){
     var tabledata = req.body;
     console.log(tabledata);
     if (tabledata && tabledata.name) {
@@ -62,7 +62,7 @@ app.post("/api/new", function(req, res){
 });
 
 
-app.get("/api/new", function(req,res){
+app.get("api/new", function(req,res){
     var tableId = req.params.id;
 
     if(tableId){
